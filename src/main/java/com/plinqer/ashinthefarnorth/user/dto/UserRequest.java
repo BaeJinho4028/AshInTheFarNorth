@@ -1,11 +1,14 @@
 package com.plinqer.ashinthefarnorth.user.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.plinqer.ashinthefarnorth.user.service.model.User;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@JsonNaming(SnakeCaseStrategy.class)
 public record UserRequest(
     @Schema(description = "사용자 이름", example = "테오", requiredMode = Schema.RequiredMode.REQUIRED)
     @Size(max = 10, message = "사용자 이름의 길이는 최대 10자입니다.")

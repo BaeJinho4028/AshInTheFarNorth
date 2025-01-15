@@ -57,7 +57,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    User getById(Integer id) {
+    public User getById(Integer id) {
         return userRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
     }

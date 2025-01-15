@@ -74,7 +74,6 @@ public interface UserApi {
     @Operation(summary = "특정 사용자 삭제")
     @ApiResponses({
         @ApiResponse(responseCode = "204"),
-        @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(hidden = true)))
     })
     @DeleteMapping("/user/{id}")
     ResponseEntity<Void> deleteUser(

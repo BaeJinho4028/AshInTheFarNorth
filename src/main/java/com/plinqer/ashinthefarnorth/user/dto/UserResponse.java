@@ -1,9 +1,12 @@
 package com.plinqer.ashinthefarnorth.user.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.plinqer.ashinthefarnorth.user.service.model.User;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+@JsonNaming(SnakeCaseStrategy.class)
 public record UserResponse(
     @Schema(description = "사용자 id", example = "1")
     Integer id,

@@ -37,4 +37,20 @@ public class Card extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Card(String name, String image, User user) {
+        this.name = name;
+        this.image = image;
+        this.user = user;
+    }
+
+    public void incrementWrongCount() {
+        wrongCount++;
+    }
+
+    public void update(String name, String image, User user) {
+        this.name = name;
+        this.image = image;
+        this.user = user;
+    }
 }
