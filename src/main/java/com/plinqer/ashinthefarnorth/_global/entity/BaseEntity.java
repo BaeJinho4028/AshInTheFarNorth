@@ -1,4 +1,4 @@
-package com.plinqer.ashinthefarnorth._global.domain;
+package com.plinqer.ashinthefarnorth._global.entity;
 
 import java.time.LocalDateTime;
 

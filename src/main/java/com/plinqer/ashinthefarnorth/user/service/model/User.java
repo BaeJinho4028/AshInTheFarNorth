@@ -1,6 +1,6 @@
 package com.plinqer.ashinthefarnorth.user.service.model;
 
-import com.plinqer.ashinthefarnorth._global.domain.BaseEntity;
+import com.plinqer.ashinthefarnorth._global.entity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
