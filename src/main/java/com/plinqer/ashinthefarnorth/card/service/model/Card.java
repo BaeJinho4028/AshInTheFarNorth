@@ -28,7 +28,7 @@ public class Card extends BaseEntity {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "image", nullable = false, length = 100)
+    @Column(name = "image", nullable = false, length = 1000)
     private String image;
 
     @Column(name = "wrong_count", nullable = false, columnDefinition = "INT DEFAULT 0")

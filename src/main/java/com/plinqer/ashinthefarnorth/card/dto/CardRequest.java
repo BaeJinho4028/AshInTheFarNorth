@@ -20,7 +20,7 @@ public record CardRequest(
     String name,
 
     @Schema(description = "카드 이미지", example = "https://example.com/image.jpg", requiredMode = REQUIRED)
-    @Size(max = 200, message = "카드 이미지 URL의 길이는 최대 200자입니다.")
+    @Size(max = 1000, message = "카드 이미지 URL의 길이는 최대 1000자입니다.")
     @NotBlank(message = "카드 이미지 URL을 입력해주세요.")
     String image,
 
