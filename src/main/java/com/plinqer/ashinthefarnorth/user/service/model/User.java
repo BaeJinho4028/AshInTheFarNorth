@@ -26,4 +26,16 @@ public class User extends BaseEntity {
 
     @Column(name = "win_count", nullable = false, columnDefinition = "INT DEFAULT 0")
     private int winCount = 0;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public void incrementWinCount() {
+        winCount++;
+    }
+
+    public void update(String name) {
+        this.name = name;
+    }
 }
