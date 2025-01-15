@@ -61,7 +61,7 @@ public class UserController implements UserApi {
 
     @Override
     @PutMapping("/user/{id}")
-    public ResponseEntity<UserResponse> updateUser(
+    public ResponseEntity<UserResponse> modifyUser(
         @PathVariable Integer id,
         @RequestBody @Valid UserRequest userRequest
     ) {

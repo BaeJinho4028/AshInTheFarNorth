@@ -66,7 +66,7 @@ public interface UserApi {
         @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(hidden = true)))
     })
     @PutMapping("/user/{id}")
-    ResponseEntity<UserResponse> updateUser(
+    ResponseEntity<UserResponse> modifyUser(
         @PathVariable Integer id,
         @RequestBody @Valid UserRequest userRequest
     );
