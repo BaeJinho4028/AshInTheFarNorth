@@ -56,10 +56,10 @@ public interface CardApi {
     })
     @PostMapping("/card")
     ResponseEntity<CardResponse> createCard(
-        @RequestBody @Valid CardRequest cardRequest
+        @RequestBody @Valid CardRequest request
     );
 
-    @Operation(summary = "카트 틀린 횟수 증가")
+    @Operation(summary = "카드 틀린 횟수 증가")
     @ApiResponses({
         @ApiResponse(responseCode = "201")
     })
@@ -76,7 +76,7 @@ public interface CardApi {
     @PutMapping("/card/{id}")
     ResponseEntity<CardResponse> modifyCard(
         @PathVariable Integer id,
-        @RequestBody @Valid CardRequest cardRequest
+        @RequestBody @Valid CardRequest request
     );
 
     @Operation(summary = "특정 카드 삭제")

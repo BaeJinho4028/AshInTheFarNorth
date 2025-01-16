@@ -47,7 +47,7 @@ public interface UserApi {
     })
     @PostMapping("/user")
     ResponseEntity<UserResponse> createUser(
-        @RequestBody @Valid UserRequest userRequest
+        @RequestBody @Valid UserRequest request
     );
 
     @Operation(summary = "사용자의 승리 횟수 증가")
@@ -68,7 +68,7 @@ public interface UserApi {
     @PutMapping("/user/{id}")
     ResponseEntity<UserResponse> modifyUser(
         @PathVariable Integer id,
-        @RequestBody @Valid UserRequest userRequest
+        @RequestBody @Valid UserRequest request
     );
 
     @Operation(summary = "특정 사용자 삭제")

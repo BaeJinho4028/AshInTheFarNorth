@@ -35,9 +35,9 @@ public class CardService {
     }
 
     @Transactional
-    public List<CardResponse> createCards(List<CardRequest> requests) {
-        List<Card> cards = requests.stream()
-            .map(request -> request.toCard(userService.getById(request.userId())))
+    public List<CardResponse> createCards(List<CardRequest> request) {
+        List<Card> cards = request.stream()
+            .map(req -> req.toCard(userService.getById(req.userId())))
             .toList();
         List<Card> createdCards = cardRepository.saveAll(cards);
         return createdCards.stream()
@@ -46,9 +46,9 @@ public class CardService {
     }
 
     @Transactional
-    public CardResponse createCard(CardRequest cardRequest) {
-        User user = userService.getById(cardRequest.userId());
-        Card card = cardRequest.toCard(user);
+    public CardResponse createCard(CardRequest request) {
+        User user = userService.getById(request.userId());
+        Card card = request.toCard(user);
         Card createdCard = cardRepository.save(card);
         return CardResponse.fromCard(createdCard);
     }
@@ -61,12 +61,12 @@ public class CardService {
     }
 
     @Transactional
-    public CardResponse modifyCard(Integer id, CardRequest cardRequest) {
-        User user = userService.getById(cardRequest.userId());
+    public CardResponse modifyCard(Integer id, CardRequest request) {
+        User user = userService.getById(request.userId());
         Card card = getById(id);
         card.update(
-            cardRequest.name(),
-            cardRequest.image(),
+            request.name(),
+            request.image(),
             user
         );
         return CardResponse.fromCard(card);

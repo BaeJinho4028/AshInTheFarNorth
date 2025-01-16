@@ -16,8 +16,6 @@ import com.plinqer.ashinthefarnorth.card.dto.CardRequest;
 import com.plinqer.ashinthefarnorth.card.dto.CardResponse;
 import com.plinqer.ashinthefarnorth.card.service.CardService;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -51,9 +49,9 @@ public class CardController implements CardApi {
 
     @PostMapping("/card")
     public ResponseEntity<CardResponse> createCard(
-        @RequestBody @Valid CardRequest cardRequest
+        @RequestBody @Valid CardRequest request
     ) {
-        CardResponse createdCard = cardService.createCard(cardRequest);
+        CardResponse createdCard = cardService.createCard(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCard);
     }
 
@@ -68,9 +66,9 @@ public class CardController implements CardApi {
     @PutMapping("/card/{id}")
     public ResponseEntity<CardResponse> modifyCard(
         @PathVariable Integer id,
-        @RequestBody @Valid CardRequest cardRequest
+        @RequestBody @Valid CardRequest request
     ) {
-        CardResponse modifiedCard = cardService.modifyCard(id, cardRequest);
+        CardResponse modifiedCard = cardService.modifyCard(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(modifiedCard);
     }
 

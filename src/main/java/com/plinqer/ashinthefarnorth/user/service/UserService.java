@@ -32,8 +32,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserResponse createUser(UserRequest userRequest) {
-        User user = userRequest.toUser();
+    public UserResponse createUser(UserRequest request) {
+        User user = request.toUser();
         User createdUser = userRepository.save(user);
         return UserResponse.fromUser(createdUser);
     }
@@ -46,9 +46,9 @@ public class UserService {
     }
 
     @Transactional
-    public UserResponse modifyUser(Integer id, UserRequest userRequest) {
+    public UserResponse modifyUser(Integer id, UserRequest request) {
         User user = getById(id);
-        user.update(userRequest.name());
+        user.update(request.name());
         return UserResponse.fromUser(user);
     }
 

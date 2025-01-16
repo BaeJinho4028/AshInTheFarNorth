@@ -44,9 +44,9 @@ public class UserController implements UserApi {
     @Override
     @PostMapping("/user")
     public ResponseEntity<UserResponse> createUser(
-        @RequestBody @Valid UserRequest userRequest
+        @RequestBody @Valid UserRequest request
     ) {
-        UserResponse response = userService.createUser(userRequest);
+        UserResponse response = userService.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -63,9 +63,9 @@ public class UserController implements UserApi {
     @PutMapping("/user/{id}")
     public ResponseEntity<UserResponse> modifyUser(
         @PathVariable Integer id,
-        @RequestBody @Valid UserRequest userRequest
+        @RequestBody @Valid UserRequest request
     ) {
-        UserResponse response = userService.modifyUser(id, userRequest);
+        UserResponse response = userService.modifyUser(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
