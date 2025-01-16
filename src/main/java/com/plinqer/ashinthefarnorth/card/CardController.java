@@ -16,7 +16,8 @@ import com.plinqer.ashinthefarnorth.card.dto.CardRequest;
 import com.plinqer.ashinthefarnorth.card.dto.CardResponse;
 import com.plinqer.ashinthefarnorth.card.service.CardService;
 
-import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -26,35 +27,44 @@ public class CardController implements CardApi {
 
     private final CardService cardService;
 
-    @Operation(summary = "모든 카드 조회")
     @GetMapping("/cards")
     public ResponseEntity<List<CardResponse>> getAllCards() {
         List<CardResponse> cards = cardService.getAllCards();
         return ResponseEntity.status(HttpStatus.OK).body(cards);
     }
 
-    @Operation(summary = "특정 카드 조회")
     @GetMapping("/card/{id}")
-    public ResponseEntity<CardResponse> getCardById(@PathVariable Integer id) {
+    public ResponseEntity<CardResponse> getCardById(
+        @PathVariable Integer id
+    ) {
         CardResponse card = cardService.getCardById(id);
         return ResponseEntity.status(HttpStatus.OK).body(card);
     }
 
-    @Operation(summary = "새 카드 생성")
+    @PostMapping("/cards")
+    public ResponseEntity<List<CardResponse>> createCards(
+        @RequestBody @Valid List<CardRequest> request
+    ) {
+        List<CardResponse> response = cardService.createCards(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @PostMapping("/card")
-    public ResponseEntity<CardResponse> createCard(@RequestBody @Valid CardRequest cardRequest) {
+    public ResponseEntity<CardResponse> createCard(
+        @RequestBody @Valid CardRequest cardRequest
+    ) {
         CardResponse createdCard = cardService.createCard(cardRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCard);
     }
 
-    @Operation(summary = "카드 틀린 횟수 증가")
     @PostMapping("/card/{id}/wrong")
-    public ResponseEntity<CardResponse> incrementWrongCount(@PathVariable Integer id) {
+    public ResponseEntity<CardResponse> incrementWrongCount(
+        @PathVariable Integer id
+    ) {
         CardResponse updatedCard = cardService.incrementWrongCount(id);
         return ResponseEntity.status(HttpStatus.OK).body(updatedCard);
     }
 
-    @Operation(summary = "카드 정보 업데이트")
     @PutMapping("/card/{id}")
     public ResponseEntity<CardResponse> modifyCard(
         @PathVariable Integer id,
@@ -64,9 +74,10 @@ public class CardController implements CardApi {
         return ResponseEntity.status(HttpStatus.OK).body(modifiedCard);
     }
 
-    @Operation(summary = "특정 카드 삭제")
     @DeleteMapping("/card/{id}")
-    public ResponseEntity<Void> deleteCard(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteCard(
+        @PathVariable Integer id
+    ) {
         cardService.deleteCard(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

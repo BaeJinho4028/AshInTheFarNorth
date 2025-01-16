@@ -35,6 +35,17 @@ public class CardService {
     }
 
     @Transactional
+    public List<CardResponse> createCards(List<CardRequest> requests) {
+        List<Card> cards = requests.stream()
+            .map(request -> request.toCard(userService.getById(request.userId())))
+            .toList();
+        List<Card> createdCards = cardRepository.saveAll(cards);
+        return createdCards.stream()
+            .map(CardResponse::fromCard)
+            .toList();
+    }
+
+    @Transactional
     public CardResponse createCard(CardRequest cardRequest) {
         User user = userService.getById(cardRequest.userId());
         Card card = cardRequest.toCard(user);

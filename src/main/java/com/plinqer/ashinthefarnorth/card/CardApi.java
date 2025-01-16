@@ -41,6 +41,15 @@ public interface CardApi {
         @PathVariable Integer id
     );
 
+    @Operation(summary = "새 카드 리스트 생성")
+    @ApiResponses({
+        @ApiResponse(responseCode = "201")
+    })
+    @PostMapping("/cards")
+    ResponseEntity<List<CardResponse>> createCards(
+        @RequestBody @Valid List<CardRequest> request
+    );
+
     @Operation(summary = "새 카드 생성")
     @ApiResponses({
         @ApiResponse(responseCode = "201")
